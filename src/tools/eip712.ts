@@ -10,32 +10,22 @@ Return format: just the 0x-prefixed hex signature, nothing else.
 
 // {
 //     "domain": {
-//       "name": "DhruvaAudit",
-//       "version": "1",
-//       "chainId": 80002,
+    // name: "DhruvaAgentIdentity",
+    // version: "1",
+    // chainId: 31337,
 //       "verifyingContract": ""
 //     },
 //     "types": {
-//       "AuditChallenge": [
-//         {
-//           "name": "message",
-//           "type": "string"
-//         },
-//         {
-//           "name": "nonce",
-//           "type": "string"
-//         },
-//         {
-//           "name": "timestamp",
-//           "type": "uint256"
-//         }
+    // RegisterAgentWallet: [
+    //     { name: "nftOwner", type: "address" },
+    //     { name: "agentWallet", type: "address" },
+    //     { name: "deadline", type: "uint256" },
 //       ]
 //     },
-//     "primaryType": "AuditChallenge",
 //     "message": {
-//       "message": "Dhruva Audit: Please sign this challenge to verify your identity...",
-//       "nonce": "0x7da74c23d5e1f07365a0c870f5c20e47",
-//       "timestamp": 1772783078
+//       "nftOwner": "0x...",
+//       "agentWallet": "0x...",
+//       "deadline": "1234567890",
 //     }
 //   }
 
