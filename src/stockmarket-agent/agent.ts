@@ -6,7 +6,7 @@ import { getDhruvaVerificationSignature } from '../tools/eip712.js';
 
   
   const model = new ChatGoogleGenerativeAI({
-    model: "gemini-2.5-flash",
+    model: "gemini-3.1-flash-lite-preview",
     apiKey: process.env.GEMINI_API_KEY,
     temperature: 0
   });
@@ -20,9 +20,9 @@ const agent = createAgent({
 export const invokeAgent = async (message: Message) => {
   console.log('Invoking agent with message:', message);
   const response = await agent.invoke({
-    messages: message.parts.map((part) => ({
-      role: message.role,
-      content: part.kind === 'text' ? part.text : ""
+    messages: message?.parts?.map((part) => ({
+      role: message?.role,
+      content: part?.kind === 'text' ? part?.text : ""
     })),
   }); 
   return response.messages[response.messages.length - 1].content;

@@ -53,7 +53,7 @@ export const getDhruvaVerificationSignature = tool(
   async (challengeBase64: string) => {
     try {
     const challenge = JSON.parse(Buffer.from(challengeBase64, 'base64').toString('utf-8'));
-    console.log("challenge", challenge);
+    // console.log("challenge", challenge);
     const domain = challenge.domain;
     const types = challenge.types;
     const message = challenge.message;
