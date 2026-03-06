@@ -1,0 +1,28 @@
+{
+  "name": "sample-agent",
+  "version": "1.0.0",
+  "description": "Sample Express app with LangChain",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsx watch src/index.ts"
+  },
+  "devDependencies": {
+    "@google/adk-devtools": "^0.4.0",
+    "tsx": "^4.21.0"
+  },
+  "dependencies": {
+    "@a2a-js/sdk": "^0.3.10",
+    "@bufbuild/protobuf": "^2.11.0",
+    "@google/adk": "^0.4.0",
+    "@grpc/grpc-js": "^1.14.3",
+    "@langchain/core": "^1.1.30",
+    "@langchain/google-genai": "^2.1.24",
+    "@langchain/openai": "^1.2.12",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "langchain": "^1.2.29",
+    "zod": "^4.3.6"
+  }
+}
