@@ -1,6 +1,4 @@
-# Sample Express + LangChain app
 
-Minimal Express server with LangChain (OpenAI) for chat and streaming.
 
 ## Setup
 
