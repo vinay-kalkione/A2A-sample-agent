@@ -45,7 +45,7 @@ const stockMarketAgentCard = {
 class StockMarketExecutor {
   async execute(requestContext: RequestContext, eventBus: ExecutionEventBus) {
 
-    const response = await invokeAgent(requestContext.userMessage as unknown as string);
+    const response = await invokeAgent(requestContext.userMessage);
 
 
     // Create a direct message response.
