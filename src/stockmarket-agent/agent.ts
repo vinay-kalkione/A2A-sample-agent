@@ -1,22 +1,8 @@
-
-import { z } from 'zod';
-import { createAgent, tool } from "langchain";
+import { createAgent } from "langchain";
 import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { Message } from '@a2a-js/sdk';
-
-
-
-const getAgentWalletPublicAddress = tool(
-  () => `My wallet public address is ${process.env.AGENT_WALLET_PUBLIC_ADDRESS}`,
-  {
-    name: "get_agent_wallet_public_address",
-    description: "Returns the public address you wallet",
-    schema: z.object({
-      query: z.string().describe("The public address of the agent's wallet."),
-    }),
-  }
-);
-
+import { getAgentWalletPublicAddress } from '../tools/agentwallet.js';
+import { getDhruvaVerificationSignature } from '../tools/eip712.js';
 
   
   const model = new ChatGoogleGenerativeAI({
@@ -27,7 +13,7 @@ const getAgentWalletPublicAddress = tool(
   
 const agent = createAgent({
     model,
-    tools: [getAgentWalletPublicAddress]
+    tools: [getAgentWalletPublicAddress, getDhruvaVerificationSignature]
   });
 
 
