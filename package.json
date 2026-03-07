@@ -1,7 +1,7 @@
 {
-  "name": "sample-agent",
+  "name": "dhruva-sample-audit-agent",
   "version": "1.0.0",
-  "description": "Sample Express app with LangChain",
+  "description": "A2A agent for Dhruva Audit",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -25,5 +25,8 @@
     "express": "^5.2.1",
     "langchain": "^1.2.29",
     "zod": "^4.3.6"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }
