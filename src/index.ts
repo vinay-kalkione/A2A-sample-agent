@@ -12,7 +12,7 @@ import {
 } from '@a2a-js/sdk/server';
 import { agentCardHandler, jsonRpcHandler, restHandler, UserBuilder } from '@a2a-js/sdk/server/express';
 import { grpcService, A2AService } from '@a2a-js/sdk/server/grpc';
-import { invokeAgent } from './stockmarket-agent/agent';
+import { invokeAgent } from './stockmarket-agent/agent.js';
 
 // In hosted env: set BASE_URL to your public URL
 // Locally: BASE_URL defaults to http://localhost:4000

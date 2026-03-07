@@ -58,7 +58,7 @@ export const getDhruvaVerificationSignature = tool(
     );
     console.log("signature", signature);
     return signature;
-    } catch (error) {
+    } catch (error: any) {
       console.error("error", error);
       return {
         error: "Error getting signature",

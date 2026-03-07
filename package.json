@@ -2,14 +2,16 @@
   "name": "dhruva-sample-audit-agent",
   "version": "1.0.0",
   "description": "A2A agent for Dhruva Audit",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "start": "tsx src/index.ts",
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "build": "npx tsc"
   },
   "devDependencies": {
     "@google/adk-devtools": "^0.4.0",
+    "@types/express": "^5.0.6",
     "tsx": "^4.21.0"
   },
   "dependencies": {
@@ -24,6 +26,7 @@
     "ethers": "^6.15.0",
     "express": "^5.2.1",
     "langchain": "^1.2.29",
+    "typescript": "^5.9.3",
     "zod": "^4.3.6"
   },
   "engines": {
