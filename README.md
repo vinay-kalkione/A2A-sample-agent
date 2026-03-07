@@ -28,9 +28,14 @@ A2A (Agent-to-Agent) agent for Dhruva Audit. Exposes health and chat endpoints.
 
    ```bash
    npm run dev
-  ```
+   ```
 
-## Endpoints
+5. **Production build and run:**
+   ```bash
+   npm run build
+   npm run start:prod
+   ```
+   This compiles TypeScript to `dist/` and runs the server with `node dist/index.js`.
 
 - **GET /health** – Health check.
 - **POST /chat** – One-shot chat. Body: `{ "message": "Your question" }`. Returns `{ "reply": "..." }`.
