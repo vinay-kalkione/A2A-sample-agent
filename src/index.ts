@@ -12,7 +12,7 @@ import {
 } from '@a2a-js/sdk/server';
 import { agentCardHandler, jsonRpcHandler, restHandler, UserBuilder } from '@a2a-js/sdk/server/express';
 import { grpcService, A2AService } from '@a2a-js/sdk/server/grpc';
-import { invokeAgent } from './stockmarket-agent/agent.js';
+import { invokeAgent } from './healthcare-agent/agent.js';
 
 // In hosted env: set BASE_URL to your public URL
 // Locally: BASE_URL defaults to http://localhost:4000
@@ -23,12 +23,12 @@ const agentGrpcUrl = process.env.GRPC_URL || 'localhost:4001';
 
 // 1. Define your agent's identity card.
 const stockMarketAgentCard = {
-  name: 'Stock Market Agent',
-  description: 'A agent that provides stock market information.',
+  name: 'Health Care Agent',
+  description: 'A agent that provides health care information.',
   protocolVersion: '0.3.0',
   version: '0.1.0',
   url: agentRpcUrl, // The public URL of your agent server
-  skills: [{ id: 'chat', name: 'Chat', description: 'Provide stock market information', tags: ['chat'] }],
+  skills: [{ id: 'HealthAssistant', name: 'Health Assistant', description: 'Provide health care information', tags: ['chat','healthcare'] }],
   capabilities: {
     pushNotifications: false,
   },
