@@ -6,7 +6,7 @@ import { getDhruvaVerificationSignature } from '../tools/eip712.js';
 
   
   const model = new ChatGoogleGenerativeAI({
-    model: "gemini-2.5-pro",
+    model: "gemini-3.1-flash-lite-preview",
     apiKey: process.env.GEMINI_API_KEY,
     temperature: 0
   });
