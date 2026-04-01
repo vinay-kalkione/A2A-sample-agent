@@ -1,3 +1,4 @@
+import { DhruvaSigningPolicy,RegistrationRequest } from "@kalkilabs/dhruva-agent-tools";
 import { ethers } from "ethers";
 import { tool } from "langchain";
 import { z } from "zod";
@@ -18,7 +19,7 @@ Return format: just the 0x-prefixed hex signature, nothing else.
 //     "types": {
     // RegisterAgentWallet: [
     //     { name: "nftOwner", type: "address" },
-    //     { name: "agentWallet", type: "address" },
+    //     { name: "agentWallet", type: "address" }
     //     { name: "deadline", type: "uint256" },
 //       ]
 //     },
@@ -29,40 +30,34 @@ Return format: just the 0x-prefixed hex signature, nothing else.
 //     }
 //   }
 
-const challengeSchema = z.object({
-  domain: z.object({
-    name: z.string(),
-    version: z.string(),
-    chainId: z.number(),
-    verifyingContract: z.string(),
-  }),
-  types: z.record(z.string(), z.array(z.object({ name: z.string(), type: z.string() }))),
-  message: z.record(z.string(), z.string()),
-});
 export const getDhruvaVerificationSignature = tool(
   async (challengeBase64: string) => {
     try {
-    const challenge = JSON.parse(Buffer.from(challengeBase64, 'base64').toString('utf-8'));
-    // console.log("challenge", challenge);
-    const domain = challenge.domain;
-    const types = challenge.types;
-    const message = challenge.message;
-    const wallet = new ethers.Wallet(
-      process.env.AGENT_WALLET_PRIVATE_KEY as string,
-    );
-    console.log("challenge", challenge);
-    const signature = await wallet.signTypedData(
-      domain,   
-      types,
-      message,
-    );
-    console.log("signature", signature);
-    return signature;
-    } catch (error: any) {
+      const agentPrivateKey = process.env.AGENT_WALLET_PRIVATE_KEY as `0x${string}`; // make sure to add 0x prefix to the private key if its not shown while exporting the private key from the wallet
+
+      const chainId = process.env.CHAIN_ID;
+
+      const policy = new DhruvaSigningPolicy({
+        agentPrivateKey,
+        chainId: Number(chainId),
+        whitelistedOwners: [],
+      });
+
+      const signature = await policy.evaluate({
+        base64Challenge: challengeBase64,
+        chainId: Number(chainId),
+      });
+      // console.log("signature", signature);
+      if (!signature.ok) {
+        throw new Error(signature.reason);
+      }
+      // console.log("signature", signature);
+      return signature;
+    } catch (error: unknown) {
       console.error("error", error);
       return {
         error: "Error getting signature",
-        message: error.message,
+        message: error instanceof Error ? error.message : String(error),
       };
     }
   },
